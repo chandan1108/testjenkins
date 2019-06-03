@@ -17,7 +17,8 @@ node {
         stage('Push to DockerHub'){
 
          echo 'Push to Repo'
-         bat 'docker push chandan2608/testapp:chandan_image'
+         bat 'docker tag chandan_image chandan2608/chandan_image'
+         bat ' docker push chandan2608/chandan_image'
 
        }
     }
