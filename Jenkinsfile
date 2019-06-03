@@ -1,31 +1,12 @@
-
 node {
 
+    checkout scm
 
-    currentBuild.result = "SUCCESS"
-    
+    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
 
-    try {
+        def customImage = docker.build("chandan/dockerwebapp")
 
-       stage('Checkout'){
-
-          checkout scm
-       }
-
-       stage('Build Docker image'){
-            bat 'docker build -t chandan_image .'
-       }
-        stage('Push to DockerHub'){
-
-         echo 'Push to Repo'
-         bat 'docker tag chandan_image chandan2608/chandan_image'
-         bat 'docker push chandan2608/chandan_image'
-
-       }
+        /* Push the container to the custom Registry */
+        customImage.push()
     }
-    catch (err) {
-        throw err
-        
-    }
-
 }
