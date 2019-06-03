@@ -13,7 +13,7 @@ node {
 
        stage('Build Docker'){
 
-            bat './dockerBuild.sh'
+            bat 'docker build -t chandan_image .'
        }
     }
     catch (err) {
