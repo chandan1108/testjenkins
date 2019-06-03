@@ -12,10 +12,10 @@ node {
        }
 
        stage('Build Docker image'){
-            bat 'docker build -t dockerImage .'
+            bat 'docker build -t chandan_image .'
        }
          stage('Build image') {
-        dockerImage = docker.build("chandan2608/dockerImage")
+        dockerImage = docker.build("chandan2608/chandan_image")
         }
 
         stage('Push image') {
