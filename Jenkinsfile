@@ -17,16 +17,16 @@ node('node') {
 
          print "Environment will be : ${env.NODE_ENV}"
 
-         sh 'node -v'
-         sh 'npm prune'
-         sh 'npm install'
-         sh 'npm test'
+         bat 'node -v'
+         bat 'npm prune'
+         bat 'npm install'
+         bat 'npm test'
 
        }
 
        stage('Build Docker'){
 
-            sh './dockerBuild.sh'
+            bat './dockerBuild.sh'
        }
     }
     catch (err) {
