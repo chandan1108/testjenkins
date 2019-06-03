@@ -1,9 +1,10 @@
 
 node {
-    def dockerImage
+
 
     currentBuild.result = "SUCCESS"
     
+
     try {
 
        stage('Checkout'){
@@ -14,16 +15,13 @@ node {
        stage('Build Docker image'){
             bat 'docker build -t chandan_image .'
        }
-         stage('Build image') {
-        dockerImage = docker.build("chandan2608/chandan_image")
-        }
+        stage('Push to DockerHub'){
 
-        stage('Push image') {
-                docker.withRegistry('https://registry-1.docker.io/v2/', 'chandan2608Chandu@123') {
-                dockerImage.push()
-                }
-  }
-        
+         echo 'Push to Repo'
+         bat 'docker tag chandan_image chandan2608/chandan_image'
+         bat 'docker push chandan2608/chandan_image'
+
+       }
     }
     catch (err) {
         throw err
