@@ -11,5 +11,5 @@
 
 node {
     checkout scm
-    def customImage = docker.build("my-image:1", "C:\\Jenkins\\workspace\\docker-hub-app") 
+    def customImage = docker.build("my-image:1", "C:\\Jenkins\\workspace\\docker-hub-app\\DockerFile") 
 }
