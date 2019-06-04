@@ -1,13 +1,31 @@
+
 node {
 
-    checkout scm
-    PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
 
-    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+    currentBuild.result = "SUCCESS"
+    
 
-        def customImage = docker.build("chandan/dockerwebapp")
+    try {
 
-        /* Push the container to the custom Registry */
-        customImage.push()
+       stage('Checkout'){
+
+          checkout scm
+       }
+
+       stage('Build Docker image'){
+            bat 'docker build -t chandan_image .'
+       }
+    //     stage('Push to DockerHub'){
+
+    //      echo 'Push to Repo'
+    //      bat 'docker tag chandan_image chandan2608/chandan_image'
+    //      bat 'docker push chandan2608/chandan_image'
+
+    //    }
     }
+    catch (err) {
+        throw err
+        
+    }
+
 }
