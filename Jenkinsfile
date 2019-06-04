@@ -1,31 +1,15 @@
+// node {
+//     checkout scm
+//     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+
+//         def customImage = docker.build("chandan/dockerwebapp")
+
+//         /* Push the container to the custom Registry */
+//         customImage.push()
+//     }
+// }
 
 node {
-
-
-    currentBuild.result = "SUCCESS"
-    
-
-    try {
-
-       stage('Checkout'){
-
-          checkout scm
-       }
-
-       stage('Build Docker image'){
-            bat 'docker build -t chandan_image .'
-       }
-    //     stage('Push to DockerHub'){
-
-    //      echo 'Push to Repo'
-    //      bat 'docker tag chandan_image chandan2608/chandan_image'
-    //      bat 'docker push chandan2608/chandan_image'
-
-    //    }
-    }
-    catch (err) {
-        throw err
-        
-    }
-
+    checkout scm
+    def customImage = docker.build("my-image:1", "C:\\Jenkins\\workspace\\docker-hub-app") 
 }
