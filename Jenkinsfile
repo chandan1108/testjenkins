@@ -6,8 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the docker images"
-                IMAGE_NAME="chandan2608/hello:${BUILD_NUMBER}"
-                bat "docker build -t ${IMAGE_NAME} ."
+                bat "docker build -t chandan2608/hello:${BUILD_NUMBER} ."
             }
         }
         stage('Push') {
