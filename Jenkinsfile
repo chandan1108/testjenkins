@@ -4,7 +4,7 @@ pipeline{
         stage('Build'){
             steps{
                 echo "Building the docker images"
-                bat docker build -t pipline_image .
+                // bat docker build -t pipline_image .
             }
         }
         stage('Push'){
