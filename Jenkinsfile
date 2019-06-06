@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the docker images"
-                bat docker build -t dtdt .
+                bat docker build -t "dtdt" .
             }
         }
         stage('Push') {
