@@ -1,10 +1,12 @@
 pipeline {
     agent any
+    def IMAGE_NAME="chandan2608/hello:${BUILD_NUMBER}"
     stages {
         stage('Build') {
             steps {
                 echo "Building the docker images"
-                bat docker build -t "dtdt" .
+
+                bat "docker build -t ${IMAGE_NAME} ."
             }
         }
         stage('Push') {
