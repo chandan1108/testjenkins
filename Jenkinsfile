@@ -1,18 +1,20 @@
-node {
-    checkout scm
-    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-
-        def customImage = docker.build("chandan/dockerwebapp")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
+pipline{
+    agent any
+    stages{
+        stage('Cloning'){
+            steps{
+                echo "cloning the code from git hub"
+            }
+        }
+        stage('Build'){
+            steps{
+                echo "Building the docker images"
+            }
+        }
+        stage('Push'){
+            steps{
+                echo "Pushing docker images into docker hub"
+            }
+        }
     }
 }
-
-
-
-
-// node {
-//     checkout scm
-//     def customImage = docker.build("my-image:1", "C:\\Jenkins\\workspace\\docker-hub-app\DockerFile") 
-// }
